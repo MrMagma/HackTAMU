@@ -14,7 +14,7 @@ export default class Info extends React.Component {
             data: {
                 name: "",
                 id: "",
-                emotion: "Emotion",
+                emotions: ["Emotion"],
                 notes: ""
             }
         }
@@ -69,7 +69,7 @@ export default class Info extends React.Component {
                                     value={ this.state.data.name }
                                 ></input>
                             </h1>
-                            <h2><small>{this.state.data.emotion}</small></h2>
+                            <h2><small>{this.state.data.emotions[0]}</small></h2>
                         </div>
                     </div>
                     <div

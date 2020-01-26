@@ -13,6 +13,6 @@ export default {
 
     },
     sendImage(blob) {
-        console.log(blob.size);
+        
     }
 }

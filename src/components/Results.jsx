@@ -1,28 +1,7 @@
 import React, { Component } from "react";
 import { Line, Circle } from "rc-progress";
-import "bootstrap/dist/css/bootstrap.css";
 
 class Results extends Component {
-  getSortedEmotions() {
-    var emotionsList = [];
-    let emotions = Object.keys(this.props.emotions);
-    for (let i = 0; i < emotions.length; i++) {
-      let emotion = {};
-      emotion.name = emotions[i];
-      emotion.value = this.props.emotions[emotions[i]];
-      emotionsList.push(emotion);
-    }
-    emotionsList.sort((a, b) => {
-      if (a.value > b.value) return -1;
-      return 1;
-    });
-    let topThree = [];
-    for (let i = 0; i < 3; i++) {
-      topThree.push(emotionsList[i]);
-    }
-    return topThree;
-  }
-
   displayTopEmotions(i) {
     let red = (1 - i.value) * 255;
     let green = i.value * 255;
@@ -71,21 +50,20 @@ class Results extends Component {
       lineHeight: "90%",
       position: "absolute",
       bottom: 0,
-      height: "15em",
+      height: "12em",
       width: "100%"
     };
     if (this.props.emotions == null) {
       return <div style={resultsStyle}></div>;
     }
-    let topEmotions = this.getSortedEmotions();
 
     return (
       <div style={resultsStyle} className="container">
-        <div>{this.displayTopEmotions(topEmotions[0])}</div>
+        <div>{this.displayTopEmotions(this.props.emotions[0])}</div>
         <br></br>
-        <div>{this.displayTopEmotions(topEmotions[1])}</div>
+        <div>{this.displayTopEmotions(this.props.emotions[1])}</div>
         <br></br>
-        <div>{this.displayTopEmotions(topEmotions[2])}</div>
+        <div>{this.displayTopEmotions(this.props.emotions[2])}</div>
         <br></br>
       </div>
     );
