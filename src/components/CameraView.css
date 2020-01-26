@@ -8,7 +8,7 @@
     z-index: -1;
 }
 
-.camera-view > * {
+.camera-output {
     position: absolute;
     display: block;
     top: 0;
