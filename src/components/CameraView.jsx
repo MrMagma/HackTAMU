@@ -22,13 +22,23 @@ export default class CameraView extends React.Component {
     componentDidMount() {
         canvas = document.getElementById("image-output");
         video = document.getElementById("camera-output");
+        CameraView.setupCamera();
+    }
+    static setupCamera = async () => {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoDevices = devices.filter(device => device.kind === 'videoinput');
+        console.log("Video devices", videoDevices);
 
         navigator.mediaDevices.getUserMedia({
-            video: true
+            video: {
+                facingMode: {
+                    exact: "environment"
+                }
+            }
         }).then((stream) => { video.srcObject = stream; });
 
         video.oncanplay = () => {
-            setInterval(CameraView.sendData, 3000);
+            // setInterval(CameraView.sendData, 3000);
         };
     }
     static sendData() {
