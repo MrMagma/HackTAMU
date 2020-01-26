@@ -1,0 +1,9 @@
+{
+    "emotionMap": {
+        "Angry": "Angry",
+        "Happiness": "Happiness",
+        "Sadness": "Sadness",
+        "Contempt": "Contempt",
+        "emotion5": "EMOTION 5.0"
+    }
+}

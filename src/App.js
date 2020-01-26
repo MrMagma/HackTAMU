@@ -5,6 +5,7 @@ import CameraView from "./components/CameraView";
 import Results from "./components/Results";
 
 import controller from "./controller.js";
+import data from "./data.json";
 
 export default class App extends React.Component {
     state = {
@@ -24,7 +25,7 @@ export default class App extends React.Component {
         return {
             emotions: Object.keys(state.emotions)
                 .sort((a, b) => (state.emotions[b] - state.emotions[a]))
-                .map(key => { return { name: key, value: state.emotions[key] }; })
+                .map(key => { return { name: key, value: data.emotionMap[state.emotions[key]] }; })
         };
     }
 
