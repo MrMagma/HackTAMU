@@ -26,14 +26,6 @@ export default class App extends React.Component {
         notes: ""
     };
 
-    static getDerivedStateFromProps(props, state) {
-        return {
-            emotions: Object.keys(state.emotions)
-                .sort((a, b) => (state.emotions[b] - state.emotions[a]))
-                .map(key => { return { name: key, value: state.emotions[key] }; })
-        };
-    }
-
     renderMenu() {
         if (this.state.mode == "default")
             return <Results emotions={this.state.emotions} />;
@@ -75,7 +67,9 @@ export default class App extends React.Component {
 
     componentDidMount() {
         controller.onEmoteReceived(data => {
-            this.setState({ emotions: data });
+            this.setState({ emotions: Object.keys(data)
+                .sort((a, b) => (data[b] - data[a]))
+                .map(key => { return { name: key, value: data[key] }; }) });
         });
     }
 }

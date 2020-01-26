@@ -19,14 +19,16 @@ export default class Info extends React.Component {
             }
         }
         setInterval(() => {
-            
-            controller.getNotes(this.state.data.emotions[0].name, (data) => {
-                data = JSON.parse(data);
-                if (!this.state.open) {
-                    this.state.data.notes = data.content;
-                    this.forceUpdate();
-                }
-            });
+            if (this.state.data.emotions.length) {
+                controller.getNotes(this.state.data.emotions[0].name, (data) => {
+                    if (data.length == 0) data = "{'content': ''}";
+                    data = JSON.parse(data);
+                    if (!this.state.open) {
+                        this.state.data.notes = data.content;
+                        this.forceUpdate();
+                    }
+                });
+            }
         }, 500);
 
         controller.onToggleInfo(this.toggle.bind(this));
@@ -41,6 +43,7 @@ export default class Info extends React.Component {
         return null;
     }
     render() {
+        if (!this.state.data.emotions.length) return <div></div>;
         return <div
             className={`info-box ${this.state.open ? "open" : "closed"}`}
         >
