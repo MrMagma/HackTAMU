@@ -1,0 +1,74 @@
+.info-box {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.info-box-content {
+    background: #FFFFFF;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: opacity 0.5s ease;
+}
+
+.info-box.open .info-box-content {
+    opacity: 1;
+}
+
+.info-box.closed .info-box-content {
+    opacity: 0;
+}
+
+.info-box-toggle {
+    position: absolute;
+    font-size: 2em;
+    line-height: 0;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 50%;
+    color: #000000;
+}
+
+.close-icon {
+    font-size: 2em;
+}
+
+.open-icon {
+    font-size: 2em;
+}
+
+.open-icon, .close-icon {
+    color: #000000;
+}
+
+.edit-name {
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    font-size: 0.5em;
+    display: inline-block;
+    top: 0;
+    position: absolute;
+}
+
+.info-name {
+    position: relative;
+    display: inline-block;
+    min-width: 2.8em;
+}
+
+.info-name-focused {
+
+}
+
+.info-name-blurred::before {
+    position: absolute;
+    content: "Name";
+    font-style: italic;
+    color: #999;
+}
