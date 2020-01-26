@@ -44,7 +44,7 @@ export default class App extends React.Component {
     }
 
     handleEmotionChange = emotion => {
-        let gameState = (emotion === this.state.guessEmotion ? "win" : "lose");
+        let gameState = (emotion === this.state.guessEmotion ? "lose" : "win");
         this.setState({ guessEmotion: emotion, gameState: gameState });
     };
 

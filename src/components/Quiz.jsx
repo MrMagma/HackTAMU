@@ -77,7 +77,8 @@ class Quiz extends Component {
 
     const textStyle = {
       color: "white",
-      fontSize: "150%"
+      fontSize: "150%",
+      lineHeight: "110%",
     };
     return (
       <div>
