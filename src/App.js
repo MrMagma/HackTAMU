@@ -6,6 +6,15 @@ import Results from "./components/Results";
 
 import controller from "./controller.js";
 
+const emotions = {
+  Angry: 0.1,
+  Happiness: 0.0,
+  Sadness: 0.1,
+  Contempt: 0.9,
+  emotion5: 0.1
+};
+// const emotions = null;
+
 export default class App extends React.Component {
   state = {
     data: {
@@ -20,26 +29,16 @@ export default class App extends React.Component {
     return (
       <div>
         <CameraView></CameraView>
+        <br></br>
         <Info data={this.state.data}></Info>
+        <Results emotions={emotions} />
       </div>
     );
   }
+
   componentDidMount() {
     controller.onEmoteReceived(data => {
       this.setState({ data: data });
     });
-  }
-}
-
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <Results emotions={emotions}></Results>
-      </div>
-    );
   }
 }

@@ -7,7 +7,6 @@ class Results extends Component {
     var emotionsList = [];
     let emotions = Object.keys(this.props.emotions);
     for (let i = 0; i < emotions.length; i++) {
-      console.log(i, emotions[i]);
       let emotion = {};
       emotion.name = emotions[i];
       emotion.value = this.props.emotions[emotions[i]];
@@ -28,7 +27,6 @@ class Results extends Component {
     let red = (1 - i.value) * 255;
     let green = i.value * 255;
     let rgb = "rgb(" + red + "," + green + ",50)";
-    console.log(rgb);
 
     const lowBound = Math.pow(0.5, 1.5);
     let scalar = Math.pow(i.value, 1.5);
@@ -66,13 +64,21 @@ class Results extends Component {
   handleClick() {}
 
   render() {
-    let topEmotions = this.getSortedEmotions();
     const resultsStyle = {
       backgroundColor: "#282828",
       textAlign: "center",
       padding: "5%",
-      lineHeight: "90%"
+      lineHeight: "90%",
+      position: "absolute",
+      bottom: 0,
+      height: "15em",
+      width: "100%"
     };
+    if (this.props.emotions == null) {
+      return <div style={resultsStyle}></div>;
+    }
+    let topEmotions = this.getSortedEmotions();
+
     return (
       <div style={resultsStyle} className="container">
         <div>{this.displayTopEmotions(topEmotions[0])}</div>
