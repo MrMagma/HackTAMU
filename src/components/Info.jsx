@@ -8,7 +8,6 @@ export default class Info extends React.Component {
         super();
         this.state = {
             open: false,
-            nameFocused: false,
             data: {
                 name: "",
                 id: "",
@@ -16,6 +15,15 @@ export default class Info extends React.Component {
                 notes: ""
             }
         }
+    }
+    static getDerivedStateFromProps(props, state) {
+        if (props.data.id != state.data.id) {
+            return {
+                data: props.data
+            }
+        }
+        
+        return null;
     }
     render() {
         return <div
@@ -56,7 +64,7 @@ export default class Info extends React.Component {
                                     value={ this.state.data.name }
                                 ></input>
                             </h1>
-                            <h2><small>Emotion</small></h2>
+                            <h2><small>{this.state.data.emotion}</small></h2>
                         </div>
                     </div>
                     <div
@@ -91,6 +99,8 @@ export default class Info extends React.Component {
                         >
                             <button
                                 className="btn btn-block btn-primary"
+                                disabled={!this.state.data.name.length}
+                                onClick={this.handleSubmit.bind(this)}
                             >
                                 Save Notes
                             </button>
@@ -126,9 +136,14 @@ export default class Info extends React.Component {
     toggle() {
         this.setState({open: !this.state.open});
     }
+    handleSubmit() {
+        // Make request
+        this.toggle();
+    }
     handleNameChange(evt) {
         this.setState({
             data: {
+                ...this.state.data,
                 name: evt.target.value
             }
         });

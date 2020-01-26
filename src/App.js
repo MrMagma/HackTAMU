@@ -7,7 +7,12 @@ export default class App extends React.Component {
     render() {
         return <div>
             <CameraView></CameraView>
-            <Info></Info>
+            <Info data={{
+                name: "Bob",
+                id: "aaaaaaaa",
+                emotion: "Angery",
+                notes: "Bob is angery"
+            }}></Info>
         </div>
     }
 };
