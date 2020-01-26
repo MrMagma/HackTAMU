@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Line, Circle } from "rc-progress";
+import "bootstrap/dist/css/bootstrap.css";
 
 class Results extends Component {
   getSortedEmotions() {
@@ -31,29 +33,54 @@ class Results extends Component {
     const lowBound = Math.pow(0.5, 1.5);
     let scalar = Math.pow(i.value, 1.5);
     if (scalar < lowBound) scalar = lowBound;
+
     const emotionStyle = {
       fontSize: 50 * scalar,
       color: rgb
     };
     if (i.value < 0.1) return;
+
+    const lineStyle = {
+      width: "90%"
+    };
+
     return (
       <div style={emotionStyle}>
-        {i.name} {i.value}
+        <div onClick={this.handleClick()}>
+          {i.name} {Math.round(i.value * 100)}%
+        </div>
+        <br></br>
+        <Line
+          percent={i.value * 100}
+          strokeWidth="2"
+          trailWidth="2"
+          strokeColor={rgb}
+          trailColor="#282828"
+          strokeLinecap="square"
+          style={lineStyle}
+        />
       </div>
     );
   }
+
+  handleClick() {}
 
   render() {
     let topEmotions = this.getSortedEmotions();
     const resultsStyle = {
       backgroundColor: "#282828",
-      textAlign: "center"
+      textAlign: "center",
+      padding: "5%",
+      lineHeight: "90%"
     };
     return (
-      <div style={resultsStyle}>
+      <div style={resultsStyle} className="container">
         <div>{this.displayTopEmotions(topEmotions[0])}</div>
+        <br></br>
         <div>{this.displayTopEmotions(topEmotions[1])}</div>
+        <br></br>
         <div>{this.displayTopEmotions(topEmotions[2])}</div>
+        <br></br>
       </div>
     );
   }
