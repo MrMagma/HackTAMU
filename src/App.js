@@ -16,13 +16,15 @@ export default class App extends React.Component {
         mode: "defakklt",
         guessEmotion: "",
         emotions: {
-            Angry: 0.1,
-            Happiness: 0.0,
-            Sadness: 0.1,
-            Happiness: 0.9,
-            emotion5: 0.1
+            "anger": null,
+            "contempt": null,
+            "disgust": null,
+            "fear": null,
+            "happiness": null,
+            "neutral": null,
+            "sadness": null,
+            "surprise": null,
         },
-
         notes: ""
     };
 

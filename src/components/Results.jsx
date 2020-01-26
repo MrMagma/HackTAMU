@@ -55,7 +55,7 @@ class Results extends Component {
     };
 
     console.log("Props emotions: ", this.props.emotions)
-    if (this.props.emotions == null) {
+    if (this.props.emotions[0] == null) {
       return <div style={resultsStyle}></div>;
     }
 
