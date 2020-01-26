@@ -28,7 +28,7 @@ class Results extends Component {
     return (
       <div style={emotionStyle}>
         <div onClick={this.handleClick()}>
-          {i.name} {Math.round(i.value * 100)}%
+          {name} {Math.round(i.value * 100)}%
         </div>
         <br></br>
         <Line
