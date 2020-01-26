@@ -69,7 +69,7 @@ export default class Info extends React.Component {
                                     value={ this.state.data.name }
                                 ></input>
                             </h1>
-                            <h2><small>{this.state.data.emotions[0]}</small></h2>
+                            <h2><small>{this.state.data.emotions[0].name}</small></h2>
                         </div>
                     </div>
                     <div
@@ -128,7 +128,7 @@ export default class Info extends React.Component {
                         <div
                             className="open-icon"
                             style={{
-                                opacity: !this.state.data.id.length ? 1 : 0
+                                opacity: this.state.data.id.length ? 1 : 0
                             }}
                         >
                             <FontAwesomeIcon
