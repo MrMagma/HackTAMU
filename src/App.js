@@ -6,16 +6,17 @@ import Results from "./components/Results";
 
 import controller from "./controller.js";
 import data from "./data.json";
+import Navbar from "./components/Navbar";
 
 export default class App extends React.Component {
     state = {
         name: "",
-        id: "",
+        id: "a",
         emotions: {
             Angry: 0.1,
             Happiness: 0.0,
             Sadness: 0.1,
-            Contempt: 0.9,
+            Happiness: 0.9,
             emotion5: 0.1
         },
         notes: ""
@@ -25,7 +26,7 @@ export default class App extends React.Component {
         return {
             emotions: Object.keys(state.emotions)
                 .sort((a, b) => (state.emotions[b] - state.emotions[a]))
-                .map(key => { return { name: key, value: data.emotionMap[state.emotions[key]] }; })
+                .map(key => { return { name: key, value: state.emotions[key] }; })
         };
     }
 
@@ -35,6 +36,7 @@ export default class App extends React.Component {
         <div>
             <CameraView></CameraView>
             <Info data={this.state}></Info>
+            <Navbar></Navbar>
             <Results emotions={this.state.emotions} />
         </div>
         );
@@ -42,7 +44,7 @@ export default class App extends React.Component {
 
     componentDidMount() {
         controller.onEmoteReceived(data => {
-            this.setState(data);
+            this.setState({ emotions: data });
         });
     }
 }

@@ -18,11 +18,21 @@ export default class Info extends React.Component {
                 notes: ""
             }
         }
+        setInterval(() => {
+            
+            controller.getNotes(this.state.data.emotions[0].name, (data) => {
+                data = JSON.parse(data);
+                if (!this.state.open) {
+                    this.state.data.notes = data.content;
+                    this.forceUpdate();
+                }
+            });
+        }, 500);
 
-        
+        controller.onToggleInfo(this.toggle.bind(this));
     }
     static getDerivedStateFromProps(props, state) {
-        if (props.data.id != state.data.id && !state.open) {
+        if (!state.open) {
             return {
                 data: props.data
             }
@@ -37,24 +47,17 @@ export default class Info extends React.Component {
             <div
                 className="info-box-content"
             >
+                <nav
+                style={{
+                    opacity: 0
+                }}
+                className="navbar navbar-light bg-light"
+            >
+                <img src="./logo.png" height="30" className="d-inline-block align-top float-right" alt=""></img>
+            </nav>
                 <div
                     className="container"
                 >
-                    <div
-                        className="row"
-                    >
-                        <div
-                            className="col close-icon"
-                            style={{
-                                opacity: this.state.open ? 1 : 0
-                            }}
-                        >
-                            <FontAwesomeIcon
-                                icon={ faTimes }
-                                onClick={this.toggle.bind(this)}
-                            ></FontAwesomeIcon>
-                        </div>
-                    </div>
                     <div
                         className="row"
                     >
@@ -113,32 +116,6 @@ export default class Info extends React.Component {
                     </div>
                 </div>
             </div>
-            <div
-                className="container"
-            >
-                <div
-                    className="row"
-                >
-                    <div
-                        className="col-12"
-                        style={{
-                            display: this.state.open ? "none" : "block"
-                        }}
-                    >
-                        <div
-                            className="open-icon"
-                            style={{
-                                opacity: this.state.data.id.length ? 1 : 0
-                            }}
-                        >
-                            <FontAwesomeIcon
-                                icon={ faPen }
-                                onClick={ this.toggle.bind(this) }
-                            ></FontAwesomeIcon>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     }
     toggle() {
@@ -146,7 +123,7 @@ export default class Info extends React.Component {
     }
     handleSubmit() {
         controller.saveNotes(this.state.data);
-        this.toggle();
+        controller.toggleInfo();
     }
     handleNameChange(evt) {
         this.setState({

@@ -13,7 +13,6 @@ export default class CameraView extends React.Component {
         return <div className="camera-view">
             <video
                 autoPlay
-                onCanPlay={this.sendData.bind(this)}
                 id="camera-output"
                 className="camera-output"
             ></video>
@@ -26,16 +25,18 @@ export default class CameraView extends React.Component {
 
         navigator.mediaDevices.getUserMedia({
             video: true
-        }).then((stream) => { video.srcObject = stream; })
+        }).then((stream) => { video.srcObject = stream; });
+
+        video.oncanplay = () => {
+            // setInterval(CameraView.sendData, 3000);
+        };
     }
-    sendData() {
+    static sendData() {
         let context = canvas.getContext("2d");
         canvas.width = WIDTH;
         canvas.height = HEIGHT;
         context.drawImage(video, 0, 0, WIDTH, HEIGHT);
-
+        
         canvas.toBlob(controller.sendImage, "image/jpeg");
-
-        controller.onEmoteReceived(this.sendData);
     }
 }
