@@ -84,7 +84,7 @@ class Quiz extends Component {
         <div style={titleStyle}>{text}</div>
         <br></br>
         <div style={textStyle}>
-          {"The correct answer was " + this.props.correct}
+          {"The correct answer was " + this.props.correct.name}
         </div>
       </div>
     );
