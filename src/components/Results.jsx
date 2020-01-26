@@ -53,6 +53,8 @@ class Results extends Component {
       height: "12em",
       width: "100%"
     };
+
+    console.log("Props emotions: ", this.props.emotions)
     if (this.props.emotions == null) {
       return <div style={resultsStyle}></div>;
     }

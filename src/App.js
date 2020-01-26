@@ -52,13 +52,22 @@ export default class App extends React.Component {
         this.setState({ guessEmotion: emotion });
     };
 
+    handleModeChange = () => {
+        let newMode;
+        if (this.state.mode == "default") 
+            newMode = "quiz"
+        else
+            newMode = "default"
+        this.setState({mode: newMode})
+    }
+
     render() {
         console.log(this.state);
         return (
         <div>
             <CameraView></CameraView>
             <Info data={this.state}></Info>
-            <Navbar></Navbar>
+            <Navbar onClick={this.handleModeChange}></Navbar>
             {this.renderMenu()}
         </div>
         );
