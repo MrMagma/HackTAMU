@@ -53,7 +53,7 @@ class Results extends Component {
       padding: "5%",
       lineHeight: "90%",
       position: "absolute",
-      bottom: 0,
+      top: "calc(100% - 12em)",
       height: "12em",
       width: "100%"
     };
