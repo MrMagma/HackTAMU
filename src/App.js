@@ -36,7 +36,7 @@ export default class App extends React.Component {
                 <Quiz
                     onClick={this.handleEmotionChange}
                     emotions={this.state.emotions}
-                    result={this.state.guessEmotion === this.state.emotions[0] ? "win" : "waiting"}
+                    result={this.state.guessEmotion === this.state.emotions[0].name ? "win" : "waiting"}
                     correct={this.state.emotions[0]}
                 ></Quiz>
             );
