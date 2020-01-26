@@ -15,6 +15,7 @@ export default class App extends React.Component {
         id: "a",
         mode: "default",
         guessEmotion: "",
+        gameState: "",
         emotions: {
             "anger": null,
             "contempt": null,
@@ -36,14 +37,15 @@ export default class App extends React.Component {
                 <Quiz
                     onClick={this.handleEmotionChange}
                     emotions={this.state.emotions}
-                    result={this.state.guessEmotion === this.state.emotions[0].name ? "win" : "waiting"}
+                    result={this.state.gameState}
                     correct={this.state.emotions[0]}
                 ></Quiz>
             );
     }
 
     handleEmotionChange = emotion => {
-        this.setState({ guessEmotion: emotion });
+        let gameState = (emotion === this.state.guessEmotion ? "win" : "lose");
+        this.setState({ guessEmotion: emotion, gameState: gameState });
     };
 
     handleModeChange = () => {
@@ -61,7 +63,7 @@ export default class App extends React.Component {
         <div>
             <CameraView></CameraView>
             <Info data={this.state}></Info>
-            <Navbar onClick={this.handleModeChange}></Navbar>
+            <Navbar onClick={this.handleModeChange} disabled={this.state.emotions[0] === null ? true : false}></Navbar>
             {this.renderMenu()}
         </div>
         );
