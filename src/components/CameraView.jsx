@@ -28,7 +28,7 @@ export default class CameraView extends React.Component {
         }).then((stream) => { video.srcObject = stream; });
 
         video.oncanplay = () => {
-            // setInterval(CameraView.sendData, 3000);
+            setInterval(CameraView.sendData, 3000);
         };
     }
     static sendData() {

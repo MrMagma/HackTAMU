@@ -13,7 +13,7 @@ export default class App extends React.Component {
     state = {
         name: "",
         id: "a",
-        mode: "defakklt",
+        mode: "default",
         guessEmotion: "",
         emotions: {
             "anger": null,
