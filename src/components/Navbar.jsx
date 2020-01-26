@@ -28,6 +28,7 @@ export default class Navbar extends React.Component {
                     onClick={ () => controller.toggleInfo() }
                 ></FontAwesomeIcon>
             </a>
+            <button onClick={this.props.onClick} className="btn btn-sm btn-primary">MODE</button>
             <img src="./logo.png" height="30" className="d-inline-block align-top float-right" alt=""></img>
         </nav>
     }
