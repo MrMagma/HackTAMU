@@ -22,6 +22,7 @@ export default class App extends React.Component {
             Happiness: 0.9,
             emotion5: 0.1
         },
+
         notes: ""
     };
 
@@ -41,8 +42,8 @@ export default class App extends React.Component {
                 <Quiz
                     onClick={this.handleEmotionChange}
                     emotions={this.state.emotions}
-                    result={"waiting"}
-                    correct={"Anger"}
+                    result={this.state.guessEmotion === this.state.emotions[0] ? "win" : "waiting"}
+                    correct={this.state.emotions[0]}
                 ></Quiz>
             );
     }
