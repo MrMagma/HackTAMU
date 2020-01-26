@@ -20,7 +20,7 @@ export default {
     },
     saveNotes({ emotions, notes, id }) {
         request.post(SERVER_URL + "saveNotes").form({
-            mood: emotions[0].name,
+            mood: emotions[0].name.toLowerCase(),
             content: notes,
             id: id
         });
