@@ -19,19 +19,19 @@ export default class Info extends React.Component {
     }
     render() {
         return <div
-            class={`info-box ${this.state.open ? "open" : "closed"}`}
+            className={`info-box ${this.state.open ? "open" : "closed"}`}
         >
             <div
-                class="info-box-content"
+                className="info-box-content"
             >
                 <div
-                    class="container"
+                    className="container"
                 >
                     <div
-                        class="row"
+                        className="row"
                     >
                         <div
-                            class="col close-icon"
+                            className="col close-icon"
                             style={{
                                 opacity: this.state.open ? 1 : 0
                             }}
@@ -43,14 +43,14 @@ export default class Info extends React.Component {
                         </div>
                     </div>
                     <div
-                        class="row"
+                        className="row"
                     >
                         <div
-                            class="col-12"
+                            className="col-12"
                         >
                             <h1>
                                 <input
-                                    class="info-name form-control"
+                                    className="info-name form-control"
                                     onChange={ this.handleNameChange.bind(this) }
                                     placeholder="Name"
                                     value={ this.state.data.name }
@@ -60,20 +60,20 @@ export default class Info extends React.Component {
                         </div>
                     </div>
                     <div
-                        class="row"
+                        className="row"
                     >
                         <div
-                            class="col-12"
+                            className="col-12"
                         >
                             <form>
                                 <div
-                                    class="form-group"
+                                    className="form-group"
                                 >
                                     <label
-                                        for="person-notes"
+                                        htmlFor="person-notes"
                                     >Notes</label>
                                     <textarea
-                                        class="form-control"
+                                        className="form-control"
                                         id="person-notes"
                                         placeholder="Notes"
                                         value={ this.state.data.notes }
@@ -84,13 +84,13 @@ export default class Info extends React.Component {
                         </div>
                     </div>
                     <div
-                        class="row"
+                        className="row"
                     >
                         <div
-                            class="col-12"
+                            className="col-12"
                         >
                             <button
-                                class="btn btn-block btn-primary"
+                                className="btn btn-block btn-primary"
                             >
                                 Save Notes
                             </button>
@@ -99,19 +99,19 @@ export default class Info extends React.Component {
                 </div>
             </div>
             <div
-                class="container"
+                className="container"
             >
                 <div
-                    class="row"
+                    className="row"
                 >
                     <div
-                        class="col-12"
+                        className="col-12"
                         style={{
                             display: this.state.open ? "none" : "block"
                         }}
                     >
                         <div
-                            class="open-icon"
+                            className="open-icon"
                         >
                             <FontAwesomeIcon
                                 icon={ faPen }

@@ -62,10 +62,6 @@
     min-width: 2.8em;
 }
 
-.info-name-focused {
-
-}
-
 .info-name-blurred::before {
     position: absolute;
     content: "Name";
