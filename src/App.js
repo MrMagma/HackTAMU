@@ -4,16 +4,32 @@ import Info from "./components/Info";
 import CameraView from "./components/CameraView";
 import Results from "./components/Results";
 
-const emotions = {
-  anger: 0.06484969587,
-  contempt: 0.0247392,
-  disgust: 0.0367696,
-  fear: 0.2,
-  happiness: 0.8,
-  neutral: 0.0,
-  sadness: 0.0,
-  surprise: 0.0
-};
+import controller from "./controller.js";
+
+export default class App extends React.Component {
+  state = {
+    data: {
+      name: "",
+      id: "",
+      emotion: "",
+      notes: ""
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <CameraView></CameraView>
+        <Info data={this.state.data}></Info>
+      </div>
+    );
+  }
+  componentDidMount() {
+    controller.onEmoteReceived(data => {
+      this.setState({ data: data });
+    });
+  }
+}
 
 export default class App extends React.Component {
   render() {
