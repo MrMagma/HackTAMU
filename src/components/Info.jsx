@@ -19,7 +19,7 @@ export default class Info extends React.Component {
             }
         }
         setInterval(() => {
-            if (this.state.data.emotions.length) {
+            if (this.state.data.emotions.length && !this.state.open) {
                 controller.getNotes(this.state.data.emotions[0].name, (data) => {
                     if (data.length == 0) data = "{'content': ''}";
                     data = JSON.parse(data);
