@@ -3,9 +3,12 @@ import './Info.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTimes } from "@fortawesome/free-solid-svg-icons";
 
+import controller from "../controller.js";
+
 export default class Info extends React.Component {
     constructor() {
         super();
+
         this.state = {
             open: false,
             data: {
@@ -15,9 +18,11 @@ export default class Info extends React.Component {
                 notes: ""
             }
         }
+
+        
     }
     static getDerivedStateFromProps(props, state) {
-        if (props.data.id != state.data.id) {
+        if (props.data.id != state.data.id && !state.open) {
             return {
                 data: props.data
             }
@@ -122,6 +127,9 @@ export default class Info extends React.Component {
                     >
                         <div
                             className="open-icon"
+                            style={{
+                                opacity: !this.state.data.id.length ? 1 : 0
+                            }}
                         >
                             <FontAwesomeIcon
                                 icon={ faPen }
@@ -137,7 +145,7 @@ export default class Info extends React.Component {
         this.setState({open: !this.state.open});
     }
     handleSubmit() {
-        // Make request
+        controller.saveNotes(this.state.data);
         this.toggle();
     }
     handleNameChange(evt) {

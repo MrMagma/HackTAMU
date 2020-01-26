@@ -41,6 +41,7 @@
 
 .open-icon {
     font-size: 2em;
+    transition: opacity ease 0.5s;
 }
 
 .open-icon, .close-icon {
