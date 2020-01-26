@@ -92,7 +92,6 @@ class Quiz extends Component {
   }
 
   renderOptions() {
-    console.log(this.props.result);
     if (this.props.result === "waiting") {
       return this.renderButtons();
     } else if (this.props.result === "win") {
@@ -103,6 +102,7 @@ class Quiz extends Component {
   }
 
   render() {
+    console.log(this.props, this.state);
     const resultsStyle = {
       backgroundColor: "#282828",
       textAlign: "center",

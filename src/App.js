@@ -30,6 +30,10 @@ export default class App extends React.Component {
     };
 
     renderMenu() {
+        let gameState = "waiting";
+        if (this.state.guessEmotion.length) {
+            gameState = this.state.emotions[0].name === this.state.guessEmotion ? "win" : "lose";
+        }
         if (this.state.mode == "default")
             return <Results emotions={this.state.emotions} />;
         else
@@ -37,7 +41,7 @@ export default class App extends React.Component {
                 <Quiz
                     onClick={this.handleEmotionChange}
                     emotions={this.state.emotions}
-                    result={this.state.gameState}
+                    result={gameState}
                     correct={this.state.emotions[0]}
                 ></Quiz>
             );
@@ -54,11 +58,10 @@ export default class App extends React.Component {
             newMode = "quiz"
         else
             newMode = "default"
-        this.setState({mode: newMode, gameState: "waiting"})
+        this.setState({mode: newMode, gameState: "waiting", guessEmotion: ""})
     }
 
     render() {
-        console.log(this.state);
         return (
         <div>
             <CameraView></CameraView>
