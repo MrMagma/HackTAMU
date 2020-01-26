@@ -21,10 +21,14 @@ class Results extends Component {
       width: "90%"
     };
 
+    let name = i.name;
+    if (name == "happiness")
+      name = "happy"
+
     return (
       <div style={emotionStyle}>
         <div onClick={this.handleClick()}>
-          {i.name} {Math.round(i.value * 100)}%
+          {name} {Math.round(i.value * 100)}%
         </div>
         <br></br>
         <Line
