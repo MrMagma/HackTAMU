@@ -15,7 +15,7 @@ export default class App extends React.Component {
         id: "a",
         mode: "default",
         guessEmotion: "",
-        gameState: "",
+        gameState: "waiting",
         emotions: {
             "anger": null,
             "contempt": null,
@@ -54,7 +54,7 @@ export default class App extends React.Component {
             newMode = "quiz"
         else
             newMode = "default"
-        this.setState({mode: newMode})
+        this.setState({mode: newMode, gameState: "waiting"})
     }
 
     render() {
