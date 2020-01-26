@@ -63,7 +63,7 @@ export default class App extends React.Component {
         <div>
             <CameraView></CameraView>
             <Info data={this.state}></Info>
-            <Navbar onClick={this.handleModeChange} disabled={this.state.emotions[0] === null ? true : false}></Navbar>
+            <Navbar onClick={this.handleModeChange} disabled={!!this.state.emotions.length}></Navbar>
             {this.renderMenu()}
         </div>
         );
