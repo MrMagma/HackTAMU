@@ -3,6 +3,7 @@ import "./App.css";
 import Info from "./components/Info";
 import CameraView from "./components/CameraView";
 import Results from "./components/Results";
+import Quiz from "./components/Quiz"
 
 import controller from "./controller.js";
 import data from "./data.json";
@@ -12,6 +13,8 @@ export default class App extends React.Component {
     state = {
         name: "",
         id: "a",
+        mode: "defakklt",
+        guessEmotion: "",
         emotions: {
             Angry: 0.1,
             Happiness: 0.0,
@@ -30,6 +33,24 @@ export default class App extends React.Component {
         };
     }
 
+    renderMenu() {
+        if (this.state.mode == "default")
+            return <Results emotions={this.state.emotions} />;
+        else
+            return (
+                <Quiz
+                    onClick={this.handleEmotionChange}
+                    emotions={this.state.emotions}
+                    result={"waiting"}
+                    correct={"Anger"}
+                ></Quiz>
+            );
+    }
+
+    handleEmotionChange = emotion => {
+        this.setState({ guessEmotion: emotion });
+    };
+
     render() {
         console.log(this.state);
         return (
@@ -37,7 +58,7 @@ export default class App extends React.Component {
             <CameraView></CameraView>
             <Info data={this.state}></Info>
             <Navbar></Navbar>
-            <Results emotions={this.state.emotions} />
+            {this.renderMenu()}
         </div>
         );
     }
